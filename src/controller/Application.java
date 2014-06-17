@@ -19,7 +19,7 @@ public class Application {
     public static void main(String[] args) throws IOException, URISyntaxException, JSONException {
         // MainFrame mainFrame = new MainFrame();
 //        Authorization auth = new Authorization();
-//        auth.doLogin("tsvik@me.com", "shapdasha123");
+//        auth.doLogin("login", "password");
         String access_token = "942fa4261f3017367ac9a76c322ae0a71c67eae1242c44eab52a3c63b1baada8d5f713c240329424cbde0";
 
         Feed feed = new Feed();
