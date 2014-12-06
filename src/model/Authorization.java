@@ -15,7 +15,7 @@ import java.net.URLEncoder;
 public class Authorization {
 
     private String client_id = "4413336";
-    private String scope = "wall,friends,photos,notifications,notify";
+    private String scope = "wall,friends,photos,notifications,notify,offline";
     private String redirect_uri = "https://oauth.vk.com/blank.html";
     private String display = "page";
     private String response_type = "token";

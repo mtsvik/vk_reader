@@ -26,10 +26,14 @@ public class Feed {
         return feed;
     }
 
-    public static String feedTestOutput(ArrayList<Item> feed, StringBuilder sb) {
+    public Item[] getItemsArray() {
+        Item[] items = new Item[feed.size()];
 
-
-        return sb.toString();
+        for (int i = 0; i < feed.size(); i++) {
+            items[i] = feed.get(i);
+        }
+        return items;
     }
+
 
 }

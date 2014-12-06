@@ -1,5 +1,7 @@
 package view;
 
+import model.Item;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,37 +14,43 @@ public class MainFrame extends JFrame {
 
     private JFrame frame;
     private JList sidebar;
-    private JList content;
+    private JList<Item> content;
 
 
-    public MainFrame() {
-        super("VK Reader");
+    public MainFrame(Item[] items) {
         frameProperties();
         sidebar();
-        content();
+        content(items);
+        frame.setVisible(true);
     }
 
 
     private void frameProperties() {
-        frame = new JFrame();
+        frame = new JFrame("VK Reader");
         frame.getContentPane().setLayout(new BorderLayout(0, 0));
-        frame.setMinimumSize(new Dimension(350, 350));
-        frame.setMaximumSize(new Dimension(600, Integer.MAX_VALUE));
-        frame.setBounds(60, 60, 500, 650);
-        frame.setVisible(true);
+        frame.setMinimumSize(new Dimension(500, 550));
+        frame.setMaximumSize(new Dimension(700, Integer.MAX_VALUE));
+        frame.setBounds(60, 60, 550, 650);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void sidebar() {
         sidebar = new JList();
-        sidebar.setBackground(Color.GRAY);
-        sidebar.setPreferredSize(new Dimension(70, 0));
         frame.getContentPane().add(sidebar, BorderLayout.WEST);
+        sidebar.setBackground(new Color(39,39,39));
+        sidebar.setPreferredSize(new Dimension(70, 0));
+
     }
 
-    private void content() {
-        content = new JList();
-        content.setPreferredSize(new Dimension(100, 0));
-        frame.getContentPane().add(content, BorderLayout.CENTER);
+    private void content(Item[] items) {
+        content = new JList<Item>(items);
+        JScrollPane scrollPane = new JScrollPane(content);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        ListCellRenderer renderer = new ContentListRenderer();
+        content.setCellRenderer(renderer);
+        frame.getContentPane().add(scrollPane);
+
     }
 }

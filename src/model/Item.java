@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -24,5 +27,10 @@ public interface Item {
     int get_count_of_photos();
     Attachments get_attachments();
     ArrayList<Photo> get_photos();
+
+    String getPosterName() throws IOException, JSONException;
+    String getStatus() throws IOException, JSONException;
+    String getPostTime();
+
 
 }

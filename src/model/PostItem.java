@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -119,6 +122,31 @@ public class PostItem implements Item {
     public ArrayList<Photo> get_photos() {
        if (attachments.getPhotos()==null) return null;
         return attachments.getPhotos();
+    }
+
+
+
+
+
+
+
+    @Override
+    public String getPosterName() throws IOException, JSONException {
+        return Util.getPosterById(source_id)[0];
+    }
+
+    @Override
+    public String getStatus() throws IOException, JSONException {
+        String online = null;
+        boolean user = false;
+        if (source_id > 0) user = true;
+        if (user) online = Util.getPosterById(source_id)[1];
+        return online;
+    }
+
+    @Override
+    public String getPostTime() {
+        return Util.relativeTime(date);
     }
 
 

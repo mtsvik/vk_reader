@@ -70,7 +70,7 @@ public class Util {
         String output = "";
         int postCounter = 1;
 
-        for (Item qwe : feed) {
+        for (Item item : feed) {
 
             String headerOfPost = "==========================================  " + postCounter + "  ==========================================" + "\n";
             String footerOfPost = "=====================================" + "==" + "==================================================" + "\n\n\n\n";
@@ -100,19 +100,19 @@ public class Util {
                     "-------------------------------------------------------------------------------------------" +
                     "\n\n\n";
 
-            int[] posts_stats = new int[] {qwe.get_count_of_likes(), qwe.get_count_of_comments(), qwe.get_count_of_reposts()};
-            String repost = qwe.get_post_type();
-            int owner_id = Math.abs(qwe.get_owner_id());
-            String post_type = qwe.get_type();
+            int[] posts_stats = new int[] {item.get_count_of_likes(), item.get_count_of_comments(), item.get_count_of_reposts()};
+            String repost = item.get_post_type();
+            int owner_id = Math.abs(item.get_owner_id());
+            String post_type = item.get_type();
             String poster = "";
             String online = "";
-            int id = qwe.get_owner_id();
+            int id = item.get_owner_id();
             boolean user = false;
             if (id > 0) user = true;
             poster = getPosterById(id)[0];
             if (user) online = getPosterById(id)[1];
-            String posted_time = relativeTime(qwe.get_date());
-            String text = qwe.get_text();
+            String posted_time = relativeTime(item.get_date());
+            String text = item.get_text();
 
 
             output += headerOfPost;
@@ -126,7 +126,7 @@ public class Util {
                 output += "Post type: " + post_type + "\n";
             }
             if (repost.equals("copy") || repost == null) {
-                output += "Repost: [" + getPosterById(qwe.get_copy_owner_id())[0] + "]\n";
+                output += "Repost: [" + getPosterById(item.get_copy_owner_id())[0] + "]\n";
             }
             output += "\n\n";
 
